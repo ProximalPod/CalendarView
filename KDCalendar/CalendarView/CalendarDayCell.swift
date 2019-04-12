@@ -124,8 +124,17 @@ open class CalendarDayCell: UICollectionViewCell {
         }
         
         self.bgView.frame           = elementsFrame
-        self.textLabel.frame        = elementsFrame
-        
+
+        switch CalendarView.Style.cellDateLocation {
+        case .center:
+            self.textLabel.frame    = elementsFrame
+        case .topLeft, .topRight:
+            self.textLabel.frame    = elementsFrame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: elementsFrame.height - 20, right: 0))
+        case .bottomLeft, .bottomRight:
+            self.textLabel.frame    = elementsFrame.inset(by: UIEdgeInsets(top: elementsFrame.height - 20, left: 0, bottom: 0, right: 0))
+        }
+        self.textLabel.textAlignment = CalendarView.Style.cellDateLocation.textAlignment
+
         let size                            = self.bounds.height * 0.08 // always a percentage of the whole cell
         self.dotsView.frame                 = CGRect(x: 0, y: 0, width: size, height: size)
         self.dotsView.center                = CGPoint(x: self.textLabel.center.x, y: self.bounds.height - (2.5 * size))

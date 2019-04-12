@@ -25,6 +25,24 @@ extension CalendarView {
                 }
             }
         }
+
+        public enum CellDateLocationOptions {
+            case center
+            case topLeft
+            case topRight
+            case bottomLeft
+            case bottomRight
+            var textAlignment: NSTextAlignment {
+                switch self {
+                case .center:
+                    return .center
+                case .topLeft, .bottomLeft:
+                    return .left
+                case .topRight, .bottomRight:
+                    return .right
+                }
+            }
+        }
         
         public enum FirstWeekdayOptions{
             case sunday
@@ -42,6 +60,7 @@ extension CalendarView {
 
         //Common
         public static var cellShape                 = CellShapeOptions.bevel(4.0)
+        public static var cellDateLocation          = CellDateLocationOptions.center
         
         public static var firstWeekday              = FirstWeekdayOptions.monday
         
