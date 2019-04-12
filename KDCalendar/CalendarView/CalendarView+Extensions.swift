@@ -24,6 +24,7 @@
  */
 
 import UIKit
+#if KDCALENDAR_EVENT_MANAGER_ENABLED
 import EventKit
 
 extension EKEvent {
@@ -32,6 +33,7 @@ extension EKEvent {
         return (components.era == 0 && components.year == 0 && components.month == 0 && components.day == 0)
     }
 }
+#endif
 
 extension String {
     subscript(_ range: CountableRange<Int>) -> String {
